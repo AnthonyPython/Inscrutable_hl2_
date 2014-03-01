@@ -14,6 +14,7 @@
 #include "hl2_playerlocaldata.h"
 #include "simtimer.h"
 #include "soundenvelope.h"
+#include "singleplayer_animstate.h"
 
 class CAI_Squad;
 class CPropCombineBall;
@@ -60,6 +61,7 @@ public:
 private:
 	int		m_bitsDeviceID;	// tells what the device is. DEVICE_SPRINT, DEVICE_FLASHLIGHT, etc. BITMASK!!!!!
 	float	m_flDrainRate;	// how quickly does this device deplete suit power? ( percent per second )
+
 
 public:
 	int		GetDeviceID( void ) const { return m_bitsDeviceID; }
@@ -177,7 +179,7 @@ public:
 	void StopZooming( void );
 	bool IsZooming( void );
 	void CheckSuitZoom( void );
-	void SetAnimation ( PLAYER_ANIM playerAnim );
+	void SetAnimation( PLAYER_ANIM playerAnim );
 
 	// Walking
 	void StartWalking( void );
@@ -299,6 +301,7 @@ private:
 	bool				CommanderExecuteOne( CAI_BaseNPC *pNpc, const commandgoal_t &goal, CAI_BaseNPC **Allies, int numAllies );
 
 	void				OnSquadMemberKilled( inputdata_t &data );
+	
 
 	Class_T				m_nControlClass;			// Class when player is controlling another entity
 	// This player's HL2 specific data that should only be replicated to 
@@ -318,6 +321,8 @@ protected:	// Jeep: Portal_Player needs access to this variable to overload Play
 	bool				m_bPlayUseDenySound;		// Signaled by PlayerUse, but can be unset by HL2 ladder code...
 
 private:
+	CSinglePlayerAnimState *m_pPlayerAnimState;
+	QAngle m_angEyeAngles;
 
 	CAI_Squad *			m_pPlayerAISquad;
 	CSimpleSimTimer		m_CommanderUpdateTimer;

@@ -461,7 +461,7 @@ void CWeaponShotgun::PrimaryAttack( void )
 	pPlayer->SetAnimation( PLAYER_ATTACK1 );
 
 	// Don't fire again until fire animation has completed
-	m_flNextPrimaryAttack = gpGlobals->curtime + SequenceDuration();
+	m_flNextPrimaryAttack = gpGlobals->curtime + GetViewModelSequenceDuration();
 	m_iClip1 -= 1;
 
 	Vector	vecSrc		= pPlayer->Weapon_ShootPosition( );
@@ -519,7 +519,7 @@ void CWeaponShotgun::SecondaryAttack( void )
 	pPlayer->SetAnimation( PLAYER_ATTACK1 );
 
 	// Don't fire again until fire animation has completed
-	m_flNextPrimaryAttack = gpGlobals->curtime + SequenceDuration();
+	m_flNextPrimaryAttack = gpGlobals->curtime + GetViewModelSequenceDuration();
 	m_iClip1 -= 2;	// Shotgun uses same clip for primary and secondary attacks
 
 	Vector vecSrc	 = pPlayer->Weapon_ShootPosition();
